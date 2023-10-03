@@ -27,36 +27,12 @@ function renderGalleryItems() {
 }
 
 renderGalleryItems();
-
-let activeLightbox = null;
+const lightbox = new SimpleLightbox('.gallery a', {
+});
 
 gallery.addEventListener('click', (e) => {
   e.preventDefault();
-
-  if (e.target.classList.contains('gallery__image')) {
-    const largeImageURL = e.target.dataset.source;
-
-    activeLightbox = new SimpleLightbox(`
-      <img src="${largeImageURL}" alt="Image description">
-    `); 
-
-    activeLightbox.show();
-
-    document.addEventListener('keydown', closeModalOnEscape);
-  }
+  lightbox.open();
 });
 
-function closeModalOnEscape(e) {
-  if (e.key === 'Escape' && activeLightbox) {
-    activeLightbox.close();
-    activeLightbox = null;
-
-    document.removeEventListener('keydown', closeModalOnEscape);
-  }
-}
 console.log(galleryItems);
-
-
-
-
- 
